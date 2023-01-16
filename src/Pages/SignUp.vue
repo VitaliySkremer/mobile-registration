@@ -1,5 +1,7 @@
 <template>
-  <SignQuestion :sign-in="false"/>
+  <div class="sign__wrapper">
+    <SignQuestion :sign-in="false"/>
+  </div>
 </template>
 
 <script>
