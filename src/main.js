@@ -10,7 +10,8 @@ createApp(App).use(router).use(
 		{
 			defaultProps: {
 				theme: 'main',
-				maxWidth: '184px'
+				maxWidth: '184px',
+				trigger: 'click',
 			},
 		}
 	).mount('#app')
