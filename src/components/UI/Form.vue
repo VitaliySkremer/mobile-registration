@@ -1,5 +1,5 @@
 <template>
-  <form class="form">
+  <form @submit.prevent class="form">
     <slot/>
   </form>
 </template>

@@ -4,7 +4,7 @@
     <Form class="form__block">
       <LabelInput label-text="Full name" placeholder="Enter name" class="fullName"/>
       <LabelInput label-text="Email" placeholder="Enter email" class="email"/>
-      <LabelInput label-text="Password" placeholder="Enter password" type="password" :isPassword="true" class="password"/>
+      <LabelInput label-text="Password" placeholder="Enter password" type="password" :isPassword="true" class="password" info="Password must contain 8+ symbols, 1 special and 2 capital letters"/>
       <LabelInput label-text="Repeat password" placeholder="Enter password" type="password" :isPassword="true" class="repeat__password"/>
       <Button color="white" class="button__signUp">Sign Up</Button>
     </Form>
@@ -20,7 +20,7 @@ import LabelInput from "../components/UI/LabelInput.vue";
 import Button from "../components/UI/Button.vue";
 export default {
   name: "SignUp",
-  components: {Button, LabelInput, Form, Title, SignQuestion}
+  components: {Button, LabelInput, Form, Title, SignQuestion},
 }
 </script>
 

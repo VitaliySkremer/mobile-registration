@@ -1,5 +1,5 @@
 import { createRouter, createWebHistory } from 'vue-router'
-import MainPage from "../Pages/MainPage.vue";
+import EnterPage from "../Pages/EnterPage.vue";
 import SignIn from "../Pages/SignIn.vue";
 import SignUp from "../Pages/SignUp.vue";
 
@@ -7,7 +7,7 @@ const routes = [
 	{
 		path: '/',
 		name: 'Main',
-		component: MainPage
+		component: EnterPage
 	},
 	{
 		path: '/signIn',
