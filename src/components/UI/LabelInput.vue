@@ -13,7 +13,12 @@
       </tippy>
     </div>
     <div class="input__container">
-      <input :type="passwordFieldType" class="input" :placeholder="placeholder">
+      <input
+          :value="modelValue"
+          @input="(event) => $emit('update:modelValue', event.target.value)"
+          :type="passwordFieldType" class="input"
+          :placeholder="placeholder"
+      >
       <i @click="showPassword" v-if="isPassword" class="hide">
         <svg v-if="passwordFieldType==='password'" width="20" height="20" viewBox="0 0 20 13" fill="none" xmlns="http://www.w3.org/2000/svg">
           <path fill-rule="evenodd" clip-rule="evenodd" d="M10.1398 0.333336C5.97317 0.333336 2.41484 2.925 0.973175 6.58334C2.41484 10.2417 5.97317 12.8333 10.1398 12.8333C14.3065 12.8333 17.8648 10.2417 19.3065 6.58334C17.8648 2.925 14.3065 0.333336 10.1398 0.333336ZM10.1398 10.75C7.83984 10.75 5.97317 8.88334 5.97317 6.58334C5.97317 4.28334 7.83984 2.41667 10.1398 2.41667C12.4398 2.41667 14.3065 4.28334 14.3065 6.58334C14.3065 8.88334 12.4398 10.75 10.1398 10.75ZM10.1398 4.08334C8.75651 4.08334 7.63984 5.2 7.63984 6.58334C7.63984 7.96667 8.75651 9.08334 10.1398 9.08334C11.5232 9.08334 12.6398 7.96667 12.6398 6.58334C12.6398 5.2 11.5232 4.08334 10.1398 4.08334Z" fill="#181C43"/>
@@ -47,7 +52,10 @@ export default {
     },
     info:{
       type:String
-    }
+    },
+    modelValue:{
+      type: String
+    },
   },
   data(){
     return{

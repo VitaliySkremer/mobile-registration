@@ -1,5 +1,5 @@
 <template>
-  <form @submit.prevent class="form">
+  <form @submit.prevent class="form" novalidate>
     <slot/>
   </form>
 </template>
