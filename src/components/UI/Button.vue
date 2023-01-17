@@ -23,7 +23,7 @@ export default {
 <style scoped>
 .button {
   border-radius: 50px;
-  background:none;
+  background:var(--button-bg);
   font-weight: 500;
   font-size: 14px;
   height: 48px;
