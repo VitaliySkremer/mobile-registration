@@ -91,7 +91,7 @@ export default {
       if(!this.email.includes('@') || !this.email.endsWith('.ru') && !this.email.endsWith('.com')){
         this.errorEmail = 'Enter valid email';
       }
-      if(this.password.length<8 || !/((.*[A-Z].*){2,})((.*[!@#$%&?_^:*+="].*)+)/.test(this.password)){
+      if(this.password.length<8 || !/((.*[A-Z].*){2,})/.test(this.password) || !/((.*[!@#$%&?_^:*+="].*)+)/.test(this.password)){
         this.errorPassword = 'Enter valid password';
       }
       if(this.password !== this.repeatPassword || !this.repeatPassword){

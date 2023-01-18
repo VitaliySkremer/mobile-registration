@@ -20,7 +20,7 @@ export default {
 }
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
 .button {
   border-radius: 50px;
   background:var(--button-bg);
@@ -33,5 +33,10 @@ export default {
   display: flex;
   align-items: center;
   justify-content: center;
+  cursor: pointer;
+  transition: opacity .2s ease;
+  &:hover {
+    opacity: .8;
+  }
 }
 </style>

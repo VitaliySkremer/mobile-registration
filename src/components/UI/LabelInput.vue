@@ -16,7 +16,8 @@
       <input
           :value="modelValue"
           @input="(event) => $emit('update:modelValue', event.target.value)"
-          :type="passwordFieldType" class="input"
+          :type="passwordFieldType"
+          class="input"
           :placeholder="placeholder"
           :style="errorText? {backgroundColor:'var(--error-bg-color)'} :''"
       >
@@ -119,6 +120,12 @@ export default {
   font-size: 14px;
   line-height: 20px;
   color: var(--text-color);
+  &:hover {
+    background-color: var(--input-hover-bg);
+  }
+  &:focus {
+    background-color: var(--input-active-bg);
+  }
 }
 
 .hide {
