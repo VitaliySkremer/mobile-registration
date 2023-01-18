@@ -20,6 +20,7 @@ html {
   --input-bg: #F3F3FA;
   --text-color: rgba(0, 0, 0, 0.8);
   --error-color: #FF6683;
+  --error-bg-color:rgba(255,102,131,.2);
   --tooltip-bg: #1E1A3E;
   --tooltip-color: #F3F3F3;
 }
@@ -58,6 +59,22 @@ a {
   flex-direction: column;
   align-items: center;
   animation: start .5s 1 ease;
+}
+
+.woman {
+  margin-top: auto;
+  animation: wom 1s 1 ease;
+}
+
+@keyframes wom {
+  from {
+    transform: translateX(-100px);
+    opacity: 0;
+  }
+  to{
+    transform: none;
+    opacity: 1;
+  }
 }
 
 @keyframes start {

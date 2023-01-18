@@ -2,11 +2,28 @@
   <div class="sign__wrapper">
     <Title class="signIn">Sign In</Title>
     <Form class="form__block">
-      <LabelInput label-text="Email" placeholder="Enter email" class="email"/>
-      <LabelInput label-text="Password" placeholder="Enter password" type="password" :isPassword="true" class="password"/>
-      <Button color="white" class="button__signIn">Sign In</Button>
+      <LabelInput
+          :modelValue="email"
+          @update:modelValue="email = $event"
+          label-text="Email"
+          placeholder="Enter email"
+          class="email"
+          :errorText="errorEmail"
+      />
+      <LabelInput
+          :modelValue="password"
+          @update:modelValue="password = $event"
+          label-text="Password"
+          placeholder="Enter password"
+          type="password"
+          :isPassword="true"
+          class="password"
+          :errorText="errorPassword"
+      />
+      <Button @click="signIn" color="white" class="button__signIn">Sign In</Button>
     </Form>
     <SignQuestion :sign-in="true"/>
+    <Alert text="Wrong email or password" color="white" :active="activeAlert" @closeAlert="closeAlert"/>
   </div>
 </template>
 
@@ -16,9 +33,41 @@ import Title from "../components/Title.vue";
 import Form from "../components/UI/Form.vue";
 import Button from "../components/UI/Button.vue";
 import LabelInput from "../components/UI/LabelInput.vue";
+import Alert from "../components/UI/Alert.vue";
 export default {
   name: "SignIn",
-  components: {LabelInput, Button, Form, Title, SignQuestion}
+  components: {Alert, LabelInput, Button, Form, Title, SignQuestion},
+  data(){
+    return{
+      email:'',
+      errorEmail:'',
+      password:'',
+      errorPassword:'',
+      activeAlert: false
+    }
+  },
+  methods:{
+    signIn(){
+      this.errorEmail = '';
+      this.errorPassword = '';
+      if(!this.email){
+        this.errorEmail = 'Enter the email'
+      }
+      if(!this.password){
+        this.errorPassword = 'Enter the password'
+      }
+
+      if(!this.errorEmail && !this.errorPassword){
+        this.activeAlert = false
+        this.$router.push('/main')
+      }else {
+        this.activeAlert = true
+      }
+    },
+    closeAlert(){
+      this.activeAlert = false;
+    }
+  }
 }
 </script>
 

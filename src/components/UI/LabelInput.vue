@@ -18,6 +18,7 @@
           @input="(event) => $emit('update:modelValue', event.target.value)"
           :type="passwordFieldType" class="input"
           :placeholder="placeholder"
+          :style="errorText? {backgroundColor:'var(--error-bg-color)'} :''"
       >
       <i @click="showPassword" v-if="isPassword" class="hide">
         <svg v-if="passwordFieldType==='password'" width="20" height="20" viewBox="0 0 20 13" fill="none" xmlns="http://www.w3.org/2000/svg">

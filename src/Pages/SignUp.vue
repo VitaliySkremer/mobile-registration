@@ -28,6 +28,7 @@
           :isPassword="true"
           class="password"
           info="Password must contain 8+ symbols, 1 special and 2 capital letters"
+          :errorText="errorPassword"
       />
       <LabelInput
           :modelValue="repeatPassword"
@@ -37,6 +38,7 @@
           type="password"
           :isPassword="true"
           class="repeat__password"
+          :errorText="errorRepeatPassword"
       />
       <Button color="white" class="button__signUp">Sign Up</Button>
     </Form>
@@ -67,14 +69,27 @@ export default {
   },
   methods:{
     signUp(){
+      this.errorName = '';
+      this.errorEmail = '';
+      this.errorPassword = '';
+      this.errorRepeatPassword = '';
+
       if(this.fullName.length<2){
         this.errorName = 'name must be longer than 1 character'
       }
       if(!this.email.includes('@') || !this.email.endsWith('.ru') && !this.email.endsWith('.com')){
         this.errorEmail = 'Enter valid email'
       }
+      if(this.password.length<8 || !/((.*[A-Z].*){2,})((.*[!@#$%&?_^:*+="].*)+)/.test(this.password)){
+        this.errorPassword = 'Enter valid password'
+      }
+      if(this.password !== this.repeatPassword || !this.repeatPassword){
+        this.errorRepeatPassword = 'Passwords must match'
+      }
 
-      // this.errorEmail = '';
+      if(!this.errorName && !this.errorEmail && !this.errorPassword && !this.errorRepeatPassword){
+        this.$router.push('/main')
+      }
     }
   }
 }
