@@ -4,7 +4,6 @@ import SignIn from "../Pages/SignIn.vue";
 import SignUp from "../Pages/SignUp.vue";
 import Main from "../Pages/Main.vue";
 import {useUsersStore} from "../Store/Users.js";
-// import {useUsersStore} from "../Store/Users.js";
 
 const routes = [
 	{
@@ -38,6 +37,5 @@ router.beforeEach((to)=>{
 	const store = useUsersStore()
 	if(to.name==='main' && !Object.keys(store.authUser).length) return '/signIn'
 })
-
 
 export default router

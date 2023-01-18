@@ -14,7 +14,7 @@ createApp(App).use(router).use(
 			defaultProps: {
 				theme: 'main',
 				maxWidth: '184px',
-				trigger: 'click',
+				trigger: 'mouseenter click',
 			},
 		}
 	)
