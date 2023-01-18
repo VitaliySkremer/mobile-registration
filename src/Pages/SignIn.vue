@@ -1,7 +1,7 @@
 <template>
   <div class="sign__wrapper">
     <Title class="signIn">Sign In</Title>
-    <Form class="form__block">
+    <Form class="form">
       <LabelInput
           :modelValue="email"
           @update:modelValue="email = $event"
@@ -34,9 +34,18 @@ import Form from "../components/UI/Form.vue";
 import Button from "../components/UI/Button.vue";
 import LabelInput from "../components/UI/LabelInput.vue";
 import Alert from "../components/UI/Alert.vue";
+
+import {useUsersStore} from "../Store/Users.js";
+
 export default {
   name: "SignIn",
   components: {Alert, LabelInput, Button, Form, Title, SignQuestion},
+  setup(){
+    const store = useUsersStore();
+    return{
+      store
+    }
+  },
   data(){
     return{
       email:'',
@@ -57,8 +66,14 @@ export default {
         this.errorPassword = 'Enter the password'
       }
 
+      const findUser = this.store.users.find(user=> user.email === this.email)
+      if(findUser === undefined || findUser.password !== this.password){
+        this.errorEmail = ' '
+        this.errorPassword = ' '
+      }
+
       if(!this.errorEmail && !this.errorPassword){
-        this.activeAlert = false
+        this.store.setAuthUser(findUser);
         this.$router.push('/main')
       }else {
         this.activeAlert = true
@@ -66,6 +81,14 @@ export default {
     },
     closeAlert(){
       this.activeAlert = false;
+    },
+  },
+  watch:{
+    email(){
+      this.closeAlert();
+    },
+    password(){
+      this.closeAlert();
     }
   }
 }
@@ -77,7 +100,7 @@ export default {
   margin-bottom: 17px;
 }
 
-.form__block {
+.form {
   margin-bottom: 20px;
 }
 

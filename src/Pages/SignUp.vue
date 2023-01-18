@@ -1,7 +1,7 @@
 <template>
   <div class="sign__wrapper">
     <Title class="signUp">Sign Up</Title>
-    <Form @submit="signUp" class="form__block">
+    <Form @submit="signUp" class="form">
       <LabelInput
           :modelValue="fullName"
           @update:modelValue="fullName = $event"
@@ -43,6 +43,7 @@
       <Button color="white" class="button__signUp">Sign Up</Button>
     </Form>
     <SignQuestion :sign-in="false"/>
+    <Alert text="A user with such an email is already registered" color="white" :active="activeAlert" @closeAlert="closeAlert"/>
   </div>
 </template>
 
@@ -52,9 +53,18 @@ import Title from "../components/Title.vue";
 import Form from "../components/UI/Form.vue";
 import LabelInput from "../components/UI/LabelInput.vue";
 import Button from "../components/UI/Button.vue";
+import {useUsersStore} from "../Store/Users.js";
+import Alert from "../components/UI/Alert.vue";
+
 export default {
   name: "SignUp",
-  components: {Button, LabelInput, Form, Title, SignQuestion},
+  components: {Alert, Button, LabelInput, Form, Title, SignQuestion},
+  setup(){
+    const store = useUsersStore();
+    return {
+      store
+    }
+  },
   data(){
     return {
       fullName:'',
@@ -64,7 +74,8 @@ export default {
       password:'',
       errorPassword:'',
       repeatPassword:'',
-      errorRepeatPassword:''
+      errorRepeatPassword:'',
+      activeAlert: false
     }
   },
   methods:{
@@ -87,9 +98,26 @@ export default {
         this.errorRepeatPassword = 'Passwords must match'
       }
 
+      const findUser = this.store.users.find(user=> user.email === this.email)
+      if(findUser){
+        this.errorEmail = ' '
+        this.activeAlert = true;
+      }
+
       if(!this.errorName && !this.errorEmail && !this.errorPassword && !this.errorRepeatPassword){
+        const authUser = {
+          name:this.fullName,
+          email:this.email,
+          password:this.password
+        };
+        this.store.addUsers(authUser);
+        this.store.setAuthUser(authUser);
         this.$router.push('/main')
       }
+    },
+
+    closeAlert(){
+      this.activeAlert = false;
     }
   }
 }
@@ -115,7 +143,7 @@ export default {
   margin-bottom: 19px;
 }
 
-.form__block{
+.form {
   margin-bottom: 20px;
 }
 

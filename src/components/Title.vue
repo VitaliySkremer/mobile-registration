@@ -20,6 +20,8 @@ export default {
   letter-spacing: 0.02em;
   max-width: 220px;
   text-align: center;
+  text-overflow: ellipsis;
+  overflow: hidden;
 }
 
 </style>
