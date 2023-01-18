@@ -5,7 +5,7 @@
       <LabelInput
           :modelValue="fullName"
           @update:modelValue="fullName = $event"
-          label-text="Full name"
+          labelText="Full name"
           placeholder="Enter name"
           class="fullName"
           :errorText="errorName"
@@ -14,7 +14,7 @@
           :modelValue="email"
           type="email"
           @update:modelValue="email = $event"
-          label-text="Email"
+          labelText="Email"
           placeholder="Enter email"
           class="email"
           :errorText="errorEmail"
@@ -22,7 +22,7 @@
       <LabelInput
           :modelValue="password"
           @update:modelValue="password = $event"
-          label-text="Password"
+          labelText="Password"
           placeholder="Enter password"
           type="password"
           :isPassword="true"
@@ -33,7 +33,7 @@
       <LabelInput
           :modelValue="repeatPassword"
           @update:modelValue="repeatPassword = $event"
-          label-text="Repeat password"
+          labelText="Repeat password"
           placeholder="Enter password"
           type="password"
           :isPassword="true"
@@ -86,21 +86,21 @@ export default {
       this.errorRepeatPassword = '';
 
       if(this.fullName.length<2){
-        this.errorName = 'name must be longer than 1 character'
+        this.errorName = 'name must be longer than 1 character';
       }
       if(!this.email.includes('@') || !this.email.endsWith('.ru') && !this.email.endsWith('.com')){
-        this.errorEmail = 'Enter valid email'
+        this.errorEmail = 'Enter valid email';
       }
       if(this.password.length<8 || !/((.*[A-Z].*){2,})((.*[!@#$%&?_^:*+="].*)+)/.test(this.password)){
-        this.errorPassword = 'Enter valid password'
+        this.errorPassword = 'Enter valid password';
       }
       if(this.password !== this.repeatPassword || !this.repeatPassword){
-        this.errorRepeatPassword = 'Passwords must match'
+        this.errorRepeatPassword = 'Passwords must match';
       }
 
       const findUser = this.store.users.find(user=> user.email === this.email)
       if(findUser){
-        this.errorEmail = ' '
+        this.errorEmail = ' ';
         this.activeAlert = true;
       }
 
@@ -112,7 +112,7 @@ export default {
         };
         this.store.addUsers(authUser);
         this.store.setAuthUser(authUser);
-        this.$router.push('/main')
+        this.$router.push('/main');
       }
     },
 

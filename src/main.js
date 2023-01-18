@@ -1,11 +1,10 @@
-import { createApp } from 'vue'
-import App from './App.vue'
+import { createApp } from 'vue';
+import App from './App.vue';
 import {createPinia} from "pinia";
 import router from "./Router/index.js";
-import VueTippy from 'vue-tippy'
-import 'tippy.js/dist/tippy.css'
-import './style.scss'
-import {useUsersStore} from "./Store/Users.js";
+import VueTippy from 'vue-tippy';
+import 'tippy.js/dist/tippy.css';
+import './style.scss';
 
 const pinia = createPinia();
 
@@ -20,6 +19,4 @@ createApp(App).use(router).use(
 		}
 	)
 	.use(pinia)
-	.mount('#app')
-
-export const storeUser = useUsersStore();
+	.mount('#app');

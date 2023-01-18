@@ -5,7 +5,7 @@
       <LabelInput
           :modelValue="email"
           @update:modelValue="email = $event"
-          label-text="Email"
+          labelText="Email"
           placeholder="Enter email"
           class="email"
           :errorText="errorEmail"
@@ -13,7 +13,7 @@
       <LabelInput
           :modelValue="password"
           @update:modelValue="password = $event"
-          label-text="Password"
+          labelText="Password"
           placeholder="Enter password"
           type="password"
           :isPassword="true"
@@ -34,7 +34,6 @@ import Form from "../components/UI/Form.vue";
 import Button from "../components/UI/Button.vue";
 import LabelInput from "../components/UI/LabelInput.vue";
 import Alert from "../components/UI/Alert.vue";
-
 import {useUsersStore} from "../Store/Users.js";
 
 export default {
@@ -60,23 +59,23 @@ export default {
       this.errorEmail = '';
       this.errorPassword = '';
       if(!this.email){
-        this.errorEmail = 'Enter the email'
+        this.errorEmail = 'Enter the email';
       }
       if(!this.password){
-        this.errorPassword = 'Enter the password'
+        this.errorPassword = 'Enter the password';
       }
 
-      const findUser = this.store.users.find(user=> user.email === this.email)
+      const findUser = this.store.users.find(user=> user.email === this.email);
       if(findUser === undefined || findUser.password !== this.password){
-        this.errorEmail = ' '
-        this.errorPassword = ' '
+        this.errorEmail = ' ';
+        this.errorPassword = ' ';
       }
 
       if(!this.errorEmail && !this.errorPassword){
         this.store.setAuthUser(findUser);
-        this.$router.push('/main')
+        this.$router.push('/main');
       }else {
-        this.activeAlert = true
+        this.activeAlert = true;
       }
     },
     closeAlert(){
@@ -115,6 +114,5 @@ export default {
 .password {
   margin-bottom: 19px;
 }
-
 
 </style>

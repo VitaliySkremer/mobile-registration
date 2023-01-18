@@ -14,7 +14,7 @@ export default {
   name: "Main",
   components: {WomanMain, Title},
   setup(){
-    const store = useUsersStore()
+    const store = useUsersStore();
     return{
       store
     }
